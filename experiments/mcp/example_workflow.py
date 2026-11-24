@@ -1,11 +1,11 @@
 import laserchicken as lc
 
+# Load data
 point_cloud = lc.load("../../testdata/AHN3.ply")
 
 ## Normalize data
 # Adds the attribute 'normaiized_height' to the point cloud.
 # Note that data is added to the given point cloud in place
-
 lc.normalize(point_cloud)
 
 ## Filter points inside a polygon
@@ -28,7 +28,6 @@ targets = point_cloud
 volume = lc.build_volume("sphere", radius=5)
 neighborhoods = lc.compute_neighborhoods(point_cloud, targets, volume)
 ## Calculate features
-
 lc.compute_features(
     point_cloud, neighborhoods, targets, ["std_z", "mean_z", "slope"], volume
 )
@@ -48,7 +47,11 @@ lc.register_new_feature_extractor(lc.BandRatioFeatureExtractor(None, 0, data_key
 sorted(lc.list_feature_names())
 
 ## Recalculate neighbors and calculate the parameterized feature
-# Neighbors is a generator and can only be iterated once. We therefore recalculate them here. If we would want to do multiple calculations without recalculating the neighbors, we could copy the neighbors to a list. This is not done by default because neighbors can quickly grow quite large so that available RAM unnecessarily becomes the bottle neck.
+# Neighbors is a generator and can only be iterated once. 
+# We therefore recalculate them here. 
+# If we would want to do multiple calculations without recalculating the neighbors, 
+# we could copy the neighbors to a list. 
+# This is not done by default because neighbors can quickly grow quite large so that available RAM unnecessarily becomes the bottle neck.
 cylinder = lc.build_volume("infinite cylinder", radius=5)
 neighborhoods = lc.compute_neighborhoods(point_cloud, targets, cylinder)
 lc.compute_features(
