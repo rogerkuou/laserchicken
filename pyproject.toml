@@ -17,6 +17,7 @@ dependencies = [
     "colorama",
     "psutil",
     "numpy",
+    "fastmcp",
 ]
 description = "Python toolkit for ALS point clouds."
 readme = "README.md"
@@ -75,6 +76,10 @@ namespaces = false
 
 [project.scripts]
 laserchicken = "laserchicken.tools.cli:main"
+laserchicken-mcp-example = "laserchicken.mcp.server:main"
+
+[tool.setuptools.package-data]
+"laserchicken.mcp" = ["questions.json", "templates/*.j2"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"

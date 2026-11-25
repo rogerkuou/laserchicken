@@ -1,0 +1,122 @@
+{
+  "title": "Laserchicken example workflow questions",
+  "description": "Collect input values for generating a workflow script with load, normalize, filter, feature extraction, and export steps.",
+  "steps": [
+    {
+      "id": "load",
+      "title": "Load data",
+      "fields": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "Input point cloud path."
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "required": false,
+          "description": "Optional explicit input format (e.g. 'ply', 'las')."
+        }
+      ]
+    },
+    {
+      "id": "normalize",
+      "title": "Normalization",
+      "fields": [
+        {
+          "name": "cell_size",
+          "type": "number",
+          "required": false,
+          "description": "Optional cell size for local normalization."
+        }
+      ]
+    },
+    {
+      "id": "filter",
+      "title": "Spatial and height filtering",
+      "fields": [
+        {
+          "name": "polygon_wkt",
+          "type": "string",
+          "required": true,
+          "description": "Polygon in WKT format used for spatial crop."
+        },
+        {
+          "name": "height_threshold",
+          "type": "number",
+          "required": true,
+          "description": "Normalized height threshold for select_below/select_above."
+        }
+      ]
+    },
+    {
+      "id": "features",
+      "title": "Feature extraction",
+      "fields": [
+        {
+          "name": "feature_names",
+          "type": "array[string]",
+          "required": true,
+          "description": "List of feature names to compute."
+        },
+        {
+          "name": "volume.volume_type",
+          "type": "string",
+          "required": true,
+          "description": "Neighborhood volume type (for example 'sphere' or 'infinite cylinder')."
+        },
+        {
+          "name": "volume.radius",
+          "type": "number",
+          "required": false,
+          "description": "Radius when volume type requires it."
+        },
+        {
+          "name": "volume.side_length",
+          "type": "number",
+          "required": false,
+          "description": "Side length when volume type requires it."
+        },
+        {
+          "name": "target",
+          "type": "string",
+          "required": false,
+          "default": "points_above_threshold",
+          "description": "Target point cloud variable name for neighborhood computation."
+        },
+        {
+          "name": "sample_size",
+          "type": "integer",
+          "required": false,
+          "description": "Optional neighbor subsampling size."
+        }
+      ]
+    },
+    {
+      "id": "save",
+      "title": "Save output",
+      "fields": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "Output file path."
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "required": false,
+          "description": "Optional explicit output format."
+        },
+        {
+          "name": "overwrite",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "Whether to overwrite an existing output file."
+        }
+      ]
+    }
+  ]
+}
