@@ -52,7 +52,7 @@ class ExampleWorkflowRequest:
     save: SaveStepInput
 
     @classmethod
-    def from_dict(cls, payload: dict[str, Any]) -> "ExampleWorkflowRequest":
+    def from_dict(cls, payload: dict[str, Any]) -> ExampleWorkflowRequest:
         load = LoadStepInput(**payload["load"])
         normalize = NormalizationStepInput(**payload["normalize"])
         filter_step = FilterStepInput(**payload["filter"])
