@@ -1,0 +1,27 @@
+import laserchicken as lc
+
+# 1. Load data
+point_cloud = lc.load({load_path}{load_format_arg})
+
+# 2. Normalization
+{normalize_call}
+
+# 3. Filtering based on height and spatial crop
+point_cloud = lc.select_polygon(point_cloud, {polygon_wkt})
+points_below_threshold = lc.select_below(point_cloud, "normalized_height", {height_threshold})
+points_above_threshold = lc.select_above(point_cloud, "normalized_height", {height_threshold})
+
+# 4. Extract features based on a volume
+targets = {feature_target}
+volume = lc.build_volume({volume_type}, {volume_parameter_name}={volume_parameter_value})
+neighborhoods = lc.compute_neighborhoods(point_cloud, targets, volume{sample_size_arg})
+lc.compute_features(
+    point_cloud,
+    neighborhoods,
+    targets,
+    {feature_names},
+    volume,
+)
+
+# 5. Save results
+lc.export(point_cloud, {save_path}{save_format_arg}, overwrite={overwrite})

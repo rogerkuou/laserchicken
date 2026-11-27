@@ -19,6 +19,32 @@ Prerequisites:
 pip install laserchicken
 ```
 
+## Generate an example workflow with MCP
+
+You can generate an example laserchicken workflow using the MCP server. First, install extra dependencies for MCP:
+
+```bash
+pip install "laserchicken[mcp]"
+```
+
+When using an MCP-capable editor such as VS Code, the MCP server can  be started automatically through the editor's MCP configuration (.mcp.json). VS Code requires no separate manual server process.
+
+In Copilot Chat, start the guided workflow with:
+
+```text
+Use get_example_workflow_questions, ask me for the workflow values one step at a time, and then call generate_example_workflow with the collected payload.
+```
+
+You will be asked for an input point cloud, normalization settings, a WKT polygon and height threshold, feature names and neighborhood volume, and an output path. Copilot returns the generated Python script in the `script` field.
+
+### Manual start of MCP server
+
+The example MCP server exposes tools for collecting workflow inputs and generating a Python workflow script. From the repository root, start it manually with:
+
+```bash
+uv run --extra mcp laserchicken-mcp-example
+```
+
 #### Necessary steps for making a new release
 
 * Set new version number in the following files:
