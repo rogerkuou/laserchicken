@@ -17,7 +17,6 @@ dependencies = [
     "colorama",
     "psutil",
     "numpy",
-    "fastmcp",
 ]
 description = "Python toolkit for ALS point clouds."
 readme = "README.md"
@@ -70,6 +69,10 @@ docs = [
     "docutils",
     "recommonmark",
 ]
+mcp = [
+    "fastmcp>=3.4.7",
+]
+
 
 [tool.setuptools.packages.find]
 namespaces = false
