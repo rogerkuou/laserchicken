@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "laserchicken": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "${workspaceFolder}/laserchicken",
+        "run",
+        "--extra",
+        "mcp",
+        "laserchicken-mcp-example"
+      ]
+    }
+  }
+}
