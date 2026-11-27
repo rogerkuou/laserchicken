@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from fastmcp import FastMCP
 
-from laserchicken.mcp.tools import generate_example_workflow, get_example_workflow_questions
+from laserchicken.mcp.tools import (
+    generate_example_workflow,
+    get_example_workflow_questions,
+)
 
 
 def create_server() -> FastMCP:
